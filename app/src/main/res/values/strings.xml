@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SoftStep</string>
+    <string name="home_button_description">Home button</string>
+    <string name="settings_button_description">Settings button</string>
 </resources>
