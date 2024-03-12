@@ -1,381 +1,446 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:background="@color/light_grey">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <View
+        android:id="@+id/headerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/light_grey">
+        android:layout_height="56dp"
+        android:background="@color/soft_blue"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/homeButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:srcCompat="@drawable/home_button_art"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:padding="3dp"
+        android:contentDescription="@string/home_button_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/headerView"
+        app:layout_constraintBottom_toBottomOf="@id/headerView"
+        android:layout_marginStart="15dp" />
+
+    <ImageButton
+        android:id="@+id/settingsButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:srcCompat="@drawable/settings_fill0_wght400_grad0_opsz24"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:padding="3dp"
+        android:contentDescription="@string/settings_button_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/headerView"
+        app:layout_constraintBottom_toBottomOf="@id/headerView"
+        android:layout_marginEnd="20dp" />
+
+    <TextView
+        android:id="@+id/profileText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="Profile"
+        android:textSize="28sp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@id/homeButton"
+        app:layout_constraintBottom_toBottomOf="@id/headerView"
+        app:layout_constraintTop_toTopOf="@id/headerView" />
 
 
 
-        <View
-            android:id="@+id/headerView"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/headerView"
+        app:layout_constraintBottom_toTopOf="@id/submitButton">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:background="@color/soft_blue"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <TextView
-            android:id="@+id/profileText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="Profile"
-            android:textSize="28sp"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/headerView"
-            app:layout_constraintTop_toTopOf="@id/headerView" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/stageOfParkinsonsLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Stage of Parkinsons"
-            android:layout_marginTop="16dp"
-            android:textSize="21sp"
-            android:layout_marginStart="25dp"
-            app:layout_constraintTop_toBottomOf="@id/headerView"
-            app:layout_constraintStart_toStartOf="parent" />
 
-        <RadioGroup
-            android:id="@+id/stageOfParkinsonsGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginStart="25dp"
-            app:layout_constraintTop_toBottomOf="@id/stageOfParkinsonsLabel"
-            app:layout_constraintStart_toStartOf="parent">
 
-            <RadioButton
-                android:id="@+id/stage1"
+            <TextView
+                android:id="@+id/stageOfParkinsonsLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1" />
+                android:text="Stage of Parkinson's"
+                android:layout_marginTop="16dp"
+                android:textSize="21sp"
+                android:layout_marginStart="25dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-            <RadioButton
-                android:id="@+id/stage2"
+            <RadioGroup
+                android:id="@+id/stageOfParkinsonsGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2" />
+                android:orientation="horizontal"
+                android:layout_marginStart="25dp"
+                app:layout_constraintTop_toBottomOf="@id/stageOfParkinsonsLabel"
+                app:layout_constraintStart_toStartOf="parent">
 
-            <RadioButton
-                android:id="@+id/stage3"
+                <RadioButton
+                    android:id="@+id/stage1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1" />
+
+                <RadioButton
+                    android:id="@+id/stage2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2" />
+
+                <RadioButton
+                    android:id="@+id/stage3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3" />
+
+                <RadioButton
+                    android:id="@+id/stage4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4" />
+
+                <RadioButton
+                    android:id="@+id/stage5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5" />
+
+            </RadioGroup>
+            <TextView
+                android:id="@+id/primarySymptomsLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3" />
-
-            <RadioButton
-                android:id="@+id/stage4"
+                android:text="Primary Physical Symptoms"
+                android:layout_marginTop="16dp"
+                android:textSize="20sp"
+                android:layout_marginStart="25dp"
+                app:layout_constraintTop_toBottomOf="@+id/stageOfParkinsonsGroup"
+                app:layout_constraintStart_toStartOf="parent" />
+            <CheckBox
+                android:id="@+id/checkBoxTremors"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="4" />
+                android:text="Tremors"
+                android:layout_marginStart="25dp"
+                app:layout_constraintTop_toBottomOf="@id/primarySymptomsLabel"
+                app:layout_constraintStart_toStartOf="parent"/>
 
-            <RadioButton
-                android:id="@+id/stage5"
+            <CheckBox
+                android:id="@+id/checkBoxBradykinesia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5" />
+                android:text="Bradykinesia"
+                android:layout_marginStart="25dp"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxTremors"
+                app:layout_constraintStart_toStartOf="parent"/>
 
-        </RadioGroup>
-        <TextView
-            android:id="@+id/primarySymptomsLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Primary Physical Symptoms"
-            android:layout_marginTop="16dp"
-            android:textSize="20sp"
-            android:layout_marginStart="25dp"
-            app:layout_constraintTop_toBottomOf="@+id/stageOfParkinsonsGroup"
-            app:layout_constraintStart_toStartOf="parent" />
-        <CheckBox
-            android:id="@+id/checkBoxTremors"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tremors"
-            android:layout_marginStart="25dp"
-            app:layout_constraintTop_toBottomOf="@id/primarySymptomsLabel"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <CheckBox
-            android:id="@+id/checkBoxBradykinesia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bradykinesia"
-            android:layout_marginStart="25dp"
-            app:layout_constraintTop_toBottomOf="@id/checkBoxTremors"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <CheckBox
-            android:id="@+id/checkBoxRigidity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rigidity"
-            app:layout_constraintTop_toBottomOf="@id/checkBoxBradykinesia"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="25dp"/>
-
-        <CheckBox
-            android:id="@+id/checkBoxPosturalInstability"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Postural Instability"
-            app:layout_constraintTop_toBottomOf="@id/checkBoxRigidity"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="25dp"/>
-
-        <TextView
-            android:id="@+id/areaAffectedLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Areas Most Affected"
-            android:layout_marginTop="16dp"
-            android:textSize="20sp"
-            android:layout_marginStart="25dp"
-            app:layout_constraintTop_toBottomOf="@+id/checkBoxPosturalInstability"
-            app:layout_constraintStart_toStartOf="parent" />
-        <CheckBox
-            android:id="@+id/checkBoxHands"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hands"
-            android:layout_marginStart="25dp"
-            app:layout_constraintTop_toBottomOf="@id/areaAffectedLabel"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <CheckBox
-            android:id="@+id/checkBoxArms"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Arms"
-            android:layout_marginStart="25dp"
-            app:layout_constraintTop_toBottomOf="@id/checkBoxHands"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <CheckBox
-            android:id="@+id/checkBoxLegs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Legs"
-            app:layout_constraintTop_toBottomOf="@id/checkBoxArms"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="25dp"/>
-
-        <CheckBox
-            android:id="@+id/checkBoxNeck"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Neck"
-            app:layout_constraintTop_toBottomOf="@id/checkBoxLegs"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="25dp"/>
-        <CheckBox
-            android:id="@+id/checkBoxFace"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Face"
-            app:layout_constraintTop_toBottomOf="@id/checkBoxNeck"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="25dp"/>
-
-        <TextView
-            android:id="@+id/mobilityLevelLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mobility Level"
-            android:layout_marginTop="16dp"
-            android:textSize="21sp"
-            android:layout_marginStart="25dp"
-            app:layout_constraintTop_toBottomOf="@id/checkBoxFace"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <RadioGroup
-            android:id="@+id/mobilityLevelGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="25dp"
-            app:layout_constraintTop_toBottomOf="@id/mobilityLevelLabel"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <RadioButton
-                android:id="@+id/noIssues"
+            <CheckBox
+                android:id="@+id/checkBoxRigidity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No mobility issues" />
+                android:text="Rigidity"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxBradykinesia"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="25dp"/>
 
-            <RadioButton
-                android:id="@+id/hardStandingUp"
+            <CheckBox
+                android:id="@+id/checkBoxPosturalInstability"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Difficulty standing up from a seated position" />
+                android:text="Postural Instability"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxRigidity"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="25dp"/>
 
-            <RadioButton
-                android:id="@+id/hardWalk"
+            <TextView
+                android:id="@+id/areaAffectedLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Difficulty walking" />
-
-            <RadioButton
-                android:id="@+id/mobilityAids"
+                android:text="Areas Most Affected"
+                android:layout_marginTop="16dp"
+                android:textSize="20sp"
+                android:layout_marginStart="25dp"
+                app:layout_constraintTop_toBottomOf="@+id/checkBoxPosturalInstability"
+                app:layout_constraintStart_toStartOf="parent" />
+            <CheckBox
+                android:id="@+id/checkBoxHands"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Use of mobilty aids" />
+                android:text="Hands"
+                android:layout_marginStart="25dp"
+                app:layout_constraintTop_toBottomOf="@id/areaAffectedLabel"
+                app:layout_constraintStart_toStartOf="parent"/>
 
-            <RadioButton
-                android:id="@+id/wheelchairBound"
+            <CheckBox
+                android:id="@+id/checkBoxArms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wheelchair-bound or bedridden" />
+                android:text="Arms"
+                android:layout_marginStart="25dp"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxHands"
+                app:layout_constraintStart_toStartOf="parent"/>
 
-        </RadioGroup>
-
-        <TextView
-            android:id="@+id/exerciseHistoryLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Exercise History"
-            android:layout_marginTop="16dp"
-            android:textSize="21sp"
-            android:layout_marginStart="25dp"
-            app:layout_constraintTop_toBottomOf="@id/mobilityLevelGroup"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <RadioGroup
-            android:id="@+id/exerciseHistoryGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="25dp"
-            app:layout_constraintTop_toBottomOf="@id/exerciseHistoryLabel"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <RadioButton
-                android:id="@+id/reg"
+            <CheckBox
+                android:id="@+id/checkBoxLegs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Regular exerciser (3+ times a week)" />
+                android:text="Legs"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxArms"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="25dp"/>
 
-            <RadioButton
-                android:id="@+id/occasional"
+            <CheckBox
+                android:id="@+id/checkBoxNeck"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Occasional exerciser (1-2 times a week)" />
-
-            <RadioButton
-                android:id="@+id/rarely"
+                android:text="Neck"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxLegs"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="25dp"/>
+            <CheckBox
+                android:id="@+id/checkBoxFace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rarely exercise" />
+                android:text="Face"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxNeck"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="25dp"/>
 
-            <RadioButton
-                android:id="@+id/never"
+            <TextView
+                android:id="@+id/mobilityLevelLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Never exercise" />
+                android:text="Mobility Level"
+                android:layout_marginTop="16dp"
+                android:textSize="21sp"
+                android:layout_marginStart="25dp"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxFace"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        </RadioGroup>
+            <RadioGroup
+                android:id="@+id/mobilityLevelGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="25dp"
+                app:layout_constraintTop_toBottomOf="@id/mobilityLevelLabel"
+                app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/limitationsLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Limitations"
-            android:layout_marginTop="16dp"
-            android:textSize="20sp"
-            android:layout_marginStart="25dp"
-            app:layout_constraintTop_toBottomOf="@+id/exerciseHistoryGroup"
-            app:layout_constraintStart_toStartOf="parent" />
-        <CheckBox
-            android:id="@+id/checkBoxNoLimit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="No limitations"
-            android:layout_marginStart="25dp"
-            app:layout_constraintTop_toBottomOf="@id/limitationsLabel"
-            app:layout_constraintStart_toStartOf="parent"/>
+                <RadioButton
+                    android:id="@+id/noIssues"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No mobility issues" />
 
-        <CheckBox
-            android:id="@+id/checkBoxEndurance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Endurance issues (fatigue quickly)"
-            android:layout_marginStart="25dp"
-            app:layout_constraintTop_toBottomOf="@id/checkBoxNoLimit"
-            app:layout_constraintStart_toStartOf="parent"/>
+                <RadioButton
+                    android:id="@+id/hardStandingUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Difficulty standing up from a seated position" />
 
-        <CheckBox
-            android:id="@+id/checkBoxBalance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Balance issues (risk of falls)"
-            app:layout_constraintTop_toBottomOf="@id/checkBoxEndurance"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="25dp"/>
+                <RadioButton
+                    android:id="@+id/hardWalk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Difficulty walking" />
 
-        <CheckBox
-            android:id="@+id/checkBoxJoint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Joint pain or discomfort"
-            app:layout_constraintTop_toBottomOf="@id/checkBoxBalance"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="25dp"/>
-        <CheckBox
-            android:id="@+id/checkBoxOther"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Other"
-            app:layout_constraintTop_toBottomOf="@id/checkBoxJoint"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="25dp"/>
+                <RadioButton
+                    android:id="@+id/mobilityAids"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Use of mobility aids" />
 
-        <TextView
-            android:id="@+id/goalsLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Goals"
-            android:layout_marginTop="16dp"
-            android:textSize="20sp"
-            android:layout_marginStart="25dp"
-            app:layout_constraintTop_toBottomOf="@+id/checkBoxOther"
-            app:layout_constraintStart_toStartOf="parent" />
-        <CheckBox
-            android:id="@+id/checkBoxFlex"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Improve Flexibility"
-            android:layout_marginStart="25dp"
-            app:layout_constraintTop_toBottomOf="@id/goalsLabel"
-            app:layout_constraintStart_toStartOf="parent"/>
+                <RadioButton
+                    android:id="@+id/wheelchairBound"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wheelchair-bound or bedridden" />
 
-        <CheckBox
-            android:id="@+id/checkBoxMuscle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Increase muscle strength"
-            android:layout_marginStart="25dp"
-            app:layout_constraintTop_toBottomOf="@id/checkBoxFlex"
-            app:layout_constraintStart_toStartOf="parent"/>
+            </RadioGroup>
 
-        <CheckBox
-            android:id="@+id/checkBoxBalanceAndCoordination"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Enhance balance and coordination"
-            app:layout_constraintTop_toBottomOf="@id/checkBoxMuscle"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="25dp"/>
+            <TextView
+                android:id="@+id/exerciseHistoryLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Exercise History"
+                android:layout_marginTop="16dp"
+                android:textSize="21sp"
+                android:layout_marginStart="25dp"
+                app:layout_constraintTop_toBottomOf="@id/mobilityLevelGroup"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <RadioGroup
+                android:id="@+id/exerciseHistoryGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="25dp"
+                app:layout_constraintTop_toBottomOf="@id/exerciseHistoryLabel"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <RadioButton
+                    android:id="@+id/reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Regular exerciser (3+ times a week)" />
+
+                <RadioButton
+                    android:id="@+id/occasional"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Occasional exerciser (1-2 times a week)" />
+
+                <RadioButton
+                    android:id="@+id/rarely"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rarely exercise" />
+
+                <RadioButton
+                    android:id="@+id/never"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Never exercise" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/limitationsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Limitations"
+                android:layout_marginTop="16dp"
+                android:textSize="20sp"
+                android:layout_marginStart="25dp"
+                app:layout_constraintTop_toBottomOf="@+id/exerciseHistoryGroup"
+                app:layout_constraintStart_toStartOf="parent" />
+            <CheckBox
+                android:id="@+id/checkBoxNoLimit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No limitations"
+                android:layout_marginStart="25dp"
+                app:layout_constraintTop_toBottomOf="@id/limitationsLabel"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <CheckBox
+                android:id="@+id/checkBoxEndurance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Endurance issues (fatigue quickly)"
+                android:layout_marginStart="25dp"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxNoLimit"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <CheckBox
+                android:id="@+id/checkBoxBalance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Balance issues (risk of falls)"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxEndurance"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="25dp"/>
+
+            <CheckBox
+                android:id="@+id/checkBoxJoint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Joint pain or discomfort"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxBalance"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="25dp"/>
+            <CheckBox
+                android:id="@+id/checkBoxOther"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Other"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxJoint"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="25dp"/>
+
+            <TextView
+                android:id="@+id/goalsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Goals"
+                android:layout_marginTop="16dp"
+                android:textSize="20sp"
+                android:layout_marginStart="25dp"
+                app:layout_constraintTop_toBottomOf="@+id/checkBoxOther"
+                app:layout_constraintStart_toStartOf="parent" />
+            <CheckBox
+                android:id="@+id/checkBoxFlex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Improve Flexibility"
+                android:layout_marginStart="25dp"
+                app:layout_constraintTop_toBottomOf="@id/goalsLabel"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <CheckBox
+                android:id="@+id/checkBoxMuscle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Increase muscle strength"
+                android:layout_marginStart="25dp"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxFlex"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <CheckBox
+                android:id="@+id/checkBoxBalanceAndCoordination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enhance balance and coordination"
+                app:layout_constraintTop_toBottomOf="@id/checkBoxMuscle"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="25dp"/>
+
+            <View
+                android:id="@+id/formContentBottomSpacer"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/checkBoxBalanceAndCoordination"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+    <View
+        android:id="@+id/submitButtonSpacer"
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        app:layout_constraintTop_toBottomOf="@id/nestedScrollView"
+        app:layout_constraintBottom_toTopOf="@id/submitButton" />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Submit"
+        android:textSize="18sp"
+        android:background="@drawable/submit_button"
+        app:backgroundTint="@color/soft_blue"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 
-
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
