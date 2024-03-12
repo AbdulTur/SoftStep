@@ -22,8 +22,13 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile); // Ensure to create this layout in res/layout
 
+        profileJsonHandler.context = getBaseContext();
+        profileData = profileJsonHandler.loadProfile(getBaseContext());
         RadioGroup stageOfParkinsonsGroup = findViewById(R.id.stageOfParkinsonsGroup);
+        RadioButton radioButton = findViewById(profileData.StageOfParkinsons);
+        radioButton.setChecked(true);
         CheckBox checkBoxTremors = findViewById(R.id.checkBoxTremors);
+
         stageOfParkinsonsGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup stageOfParkinsonsGroup, int i) {
