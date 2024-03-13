@@ -1,47 +1,67 @@
 package com.softstep.softstep;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 
 import com.google.gson.Gson;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.Reader;
 
 public class ProfileJsonHandler {
-    private static String JSON_FILE_PATH = "UserProfile.json";
-    private Gson gson;
+    private static final String JSON_FILE_PATH = "UserProfile.json";
+    private final Gson gson = new Gson();
 
-    public Context context;
-
-    public ProfileJsonHandler() {
-        gson = new Gson();
-    }
-
-    // Method to gather user information and save it to JSON file
-    public void saveProfile(ProfileData profileData) {
-        try (FileWriter writer = new FileWriter(new File(context.getFilesDir(), JSON_FILE_PATH))) {
-            gson.toJson(profileData, writer);
-            System.out.println("Profile saved successfully.");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // Method to read user information from JSON file
-    public ProfileData loadProfile(Context context) {
-        try (Reader reader = new FileReader(new File(context.getFilesDir(), JSON_FILE_PATH))) {
+    // Method to load initial profile from assets
+    public ProfileData loadInitialProfile(Context context) {
+        try {
+            AssetManager assetManager = context.getAssets();
+            InputStream is = assetManager.open(JSON_FILE_PATH);
+            Reader reader = new InputStreamReader(is);
             ProfileData profileData = gson.fromJson(reader, ProfileData.class);
-            System.out.println("Profile loaded successfully.");
+            reader.close();
             return profileData;
-        } catch (FileNotFoundException e) {
-            System.out.println("Profile file not found. Creating new profile.");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return new ProfileData(); // Return a new instance with default values if loading fails
+    }
+
+    // Method to save modified profile to internal storage
+    public void saveProfile(Context context, ProfileData profileData) {
+        try {
+            FileOutputStream fos = context.openFileOutput(JSON_FILE_PATH, Context.MODE_PRIVATE);
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fos);
+            gson.toJson(profileData, outputStreamWriter);
+            outputStreamWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Method to load modified profile from internal storage
+    public ProfileData loadModifiedProfile(Context context) {
+        File file = new File(context.getFilesDir(), JSON_FILE_PATH);
+        if (file.exists()) {
+            try {
+                FileInputStream fis = context.openFileInput(JSON_FILE_PATH);
+                InputStreamReader isr = new InputStreamReader(fis);
+                ProfileData profileData = gson.fromJson(isr, ProfileData.class);
+                isr.close();
+                return profileData;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return null; // Return null if no modified profile is found
     }
 }

@@ -1,0 +1,10 @@
+{
+  "Name" : "",
+  "StageOfParkinsons" : 1 ,
+  "PrimaryPhysicalSymptoms" : [1, 1, 1, 1, 1],
+  "AreasMostAffected" : [1, 1, 1, 1],
+  "MobilityLevel" : 1,
+  "ExerciseHistory" : 0,
+  "MovementLimitations" : [1, 1, 1, 1],
+  "Goals" : [1, 1, 1]
+}
