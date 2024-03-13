@@ -12,6 +12,6 @@ public class ProfileData {
     public int[] AreasMostAffected = new int[]{1, 1, 1, 1};;
     public int MobilityLevel = 1;
     public int ExerciseHistory = 1;
-    public int[] MovementLimitations = new int[]{1, 1, 1, 1};;
+    public int[] MovementLimitations = new int[]{1, 1, 1, 1, 1};;
     public int[] Goals = new int[]{1, 1, 1};;
 }
