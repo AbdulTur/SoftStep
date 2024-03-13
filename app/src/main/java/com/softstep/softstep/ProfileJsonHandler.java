@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 public class ProfileJsonHandler {
-    private static final String JSON_FILE_PATH = "UserProfile.json";
+    private static String JSON_FILE_PATH = "UserProfile.json";
     private Gson gson;
 
     public Context context;

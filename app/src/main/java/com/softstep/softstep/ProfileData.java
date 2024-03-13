@@ -8,10 +8,10 @@ public class ProfileData {
 
     public String Name = "";
     public int StageOfParkinsons = 1;
-    public String[] PrimaryPhysicalSymptoms = new String[]{"", "", "", "", ""};;
-    public String[] AreasMostAffected = new String[]{"", "", "", ""};;
+    public int[] PrimaryPhysicalSymptoms = new int[]{1, 1, 1, 1, 1};;
+    public int[] AreasMostAffected = new int[]{1, 1, 1, 1};;
     public int MobilityLevel = 1;
     public int ExerciseHistory = 1;
-    public String[] MovementLimitations = new String[]{"", "", "", ""};;
-    public String[] Goals = new String[]{"", "", ""};;
+    public int[] MovementLimitations = new int[]{1, 1, 1, 1};;
+    public int[] Goals = new int[]{1, 1, 1};;
 }
