@@ -3,4 +3,5 @@
     <string name="home_button_description">Home button</string>
     <string name="settings_button_description">Settings button</string>
     <string name="profile_button_description">Profile button</string>
+    <string name="back_button_description">Back Button</string>
 </resources>

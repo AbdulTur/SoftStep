@@ -166,6 +166,13 @@ public class ProfileActivity extends AppCompatActivity {
             startActivity(new Intent(ProfileActivity.this, MainActivity.class));
             Toast.makeText(getApplicationContext(), "home Button clicked", Toast.LENGTH_SHORT).show();
         });
+
+        ImageButton settingsButton = findViewById(R.id.settingsButton);
+
+        settingsButton.setOnClickListener(v -> {
+            startActivity(new Intent(ProfileActivity.this, SettingsActivity.class));
+            Toast.makeText(getApplicationContext(), "Settings Button was clicked", Toast.LENGTH_SHORT).show();
+        });
     }
 
 }

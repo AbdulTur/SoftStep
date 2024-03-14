@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_grey"
+    tools:context=".Exercise1Activity">
+
+    <View
+        android:id="@+id/headerViewExercise"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/soft_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        app:srcCompat="@drawable/baseline_arrow_back_ios_24"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/back_button_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/headerViewExercise"
+        app:layout_constraintBottom_toBottomOf="@id/headerViewExercise" />
+
+    <TextView
+        android:id="@+id/exerciseTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Leg Lifts"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/headerViewExercise"
+        app:layout_constraintBottom_toBottomOf="@id/headerViewExercise"
+        app:layout_constraintHorizontal_bias="0.5" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollViewMain"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/headerViewExercise"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/exerciseDescription1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Description: Leg lifts help strengthen the leg muscles."
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/exerciseInstructions1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Instructions: Sit in a chair and lift one leg at a time. Repeat 10 times for each leg."
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/exerciseDescription1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:id="@+id/videoPath1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Video Path: [YouTube Link Here]"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/exerciseInstructions1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

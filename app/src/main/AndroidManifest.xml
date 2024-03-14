@@ -16,6 +16,22 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
+            android:name=".Exercise1Activity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Exercise2Activity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Exercise3Activity"
+            android:exported="false" />
+
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".ProfileActivity"
             android:exported="true">
             <intent-filter>
