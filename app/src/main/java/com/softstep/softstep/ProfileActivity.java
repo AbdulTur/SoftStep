@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -48,22 +49,78 @@ public class ProfileActivity extends AppCompatActivity {
         CheckBox checkBoxMuscle = findViewById(R.id.checkBoxMuscle);
         CheckBox checkBoxBalanceAndCoordination = findViewById(R.id.checkBoxBalanceAndCoordination);
         Button submitButton = findViewById(R.id.submitButton);
+        ImageButton homeButton = findViewById(R.id.homeButton);
 
         // Check the RadioButton according to the loaded ProfileData
-        if (stageOfParkinsonsGroup != null) {
-            RadioButton selectedStageButton = stageOfParkinsonsGroup.findViewById(profileData.StageOfParkinsons);
-            if (selectedStageButton != null) {
-                selectedStageButton.setChecked(true);
-            }
 
-            // Save the profile when a new stage is selected
-            stageOfParkinsonsGroup.setOnCheckedChangeListener((group, checkedId) -> {
-                profileData.StageOfParkinsons = checkedId;
-                profileJsonHandler.saveProfile(getApplicationContext(), profileData);
-                Toast.makeText(getApplicationContext(), "Stage of Parkinson's updated", Toast.LENGTH_SHORT).show();
-            });
+        RadioButton selectedStageButton = stageOfParkinsonsGroup.findViewById(profileData.StageOfParkinsons);
+        if (selectedStageButton != null) {
+            selectedStageButton.setChecked(true);
+        }
+        if (checkBoxTremors.getId() == profileData.PrimaryPhysicalSymptoms[0]) {
+            checkBoxTremors.setChecked(true);
+        }
+        if (checkBoxBradykinesia.getId() == profileData.PrimaryPhysicalSymptoms[1]) {
+            checkBoxBradykinesia.setChecked(true);
+        }
+        if (checkBoxRigidity.getId() == profileData.PrimaryPhysicalSymptoms[2]) {
+            checkBoxRigidity.setChecked(true);
+        }
+        if (checkBoxPosturalInstability.getId() == profileData.PrimaryPhysicalSymptoms[3]) {
+            checkBoxPosturalInstability.setChecked(true);
+        }
+        if (checkBoxHands.getId() == profileData.AreasMostAffected[0]) {
+            checkBoxHands.setChecked(true);
+        }
+        if (checkBoxArms.getId() == profileData.AreasMostAffected[1]) {
+            checkBoxArms.setChecked(true);
+        }
+        if (checkBoxLegs.getId() == profileData.AreasMostAffected[2]) {
+            checkBoxLegs.setChecked(true);
+        }
+        if (checkBoxNeck.getId() == profileData.AreasMostAffected[3]) {
+            checkBoxNeck.setChecked(true);
+        }
+        if (checkBoxFace.getId() == profileData.AreasMostAffected[4]) {
+            checkBoxFace.setChecked(true);
+        }
+        RadioButton selectedMobilityLevelButton = mobilityLevelGroup.findViewById(profileData.MobilityLevel);
+        if (selectedMobilityLevelButton != null) {
+            selectedMobilityLevelButton.setChecked(true);
+        }
+        RadioButton selectedExerciseHistoryButton = exerciseHistoryGroup.findViewById(profileData.ExerciseHistory);
+        if (selectedExerciseHistoryButton != null) {
+            selectedExerciseHistoryButton.setChecked(true);
+        }
+        if (checkBoxNoLimitations.getId() == profileData.MovementLimitations[0]) {
+            checkBoxNoLimitations.setChecked(true);
+        }
+        if (checkBoxEndurance.getId() == profileData.MovementLimitations[1]) {
+            checkBoxEndurance.setChecked(true);
+        }
+        if (checkBoxBalance.getId() == profileData.MovementLimitations[2]) {
+            checkBoxBalance.setChecked(true);
+        }
+        if (checkBoxJoint.getId() == profileData.MovementLimitations[3]) {
+            checkBoxJoint.setChecked(true);
+        }
+        if (checkBoxOther.getId() == profileData.MovementLimitations[4]) {
+            checkBoxOther.setChecked(true);
+        }
+        if (checkBoxFlex.getId() == profileData.Goals[0]) {
+            checkBoxFlex.setChecked(true);
+        }
+        if (checkBoxMuscle.getId() == profileData.Goals[1]) {
+            checkBoxMuscle.setChecked(true);
+        }
+        if (checkBoxBalanceAndCoordination.getId() == profileData.Goals[2]) {
+            checkBoxBalanceAndCoordination.setChecked(true);
         }
 
+        stageOfParkinsonsGroup.setOnCheckedChangeListener((stageOfParkinsonsGroup1, i) -> {
+            profileData.StageOfParkinsons = stageOfParkinsonsGroup1.getCheckedRadioButtonId();
+            Toast.makeText(getApplicationContext(), "Stage of Parkinson's updated", Toast.LENGTH_SHORT).show();
+        });
         // Set up CheckBox listeners
         checkBoxTremors.setOnCheckedChangeListener((buttonView, isChecked) -> profileData.PrimaryPhysicalSymptoms[0] = (isChecked) ? checkBoxTremors.getId() : 1);
         checkBoxBradykinesia.setOnCheckedChangeListener((buttonView, isChecked) -> profileData.PrimaryPhysicalSymptoms[1] = (isChecked) ?  checkBoxBradykinesia.getId() : 1);
@@ -93,10 +150,21 @@ public class ProfileActivity extends AppCompatActivity {
         checkBoxFlex.setOnCheckedChangeListener((buttonView, isChecked) -> profileData.Goals[0] = (isChecked) ?  checkBoxFlex.getId() : 1);
         checkBoxMuscle.setOnCheckedChangeListener((buttonView, isChecked) -> profileData.Goals[1] = (isChecked) ?  checkBoxMuscle.getId() : 1);
         checkBoxBalanceAndCoordination.setOnCheckedChangeListener((buttonView, isChecked) -> profileData.Goals[2] = (isChecked) ?  checkBoxBalanceAndCoordination.getId() : 1);
+
         submitButton.setOnClickListener(v -> {
-            profileJsonHandler.saveProfile(this, profileData);
+            //checking for any missing/incomplete fields
+            if (profileData.StageOfParkinsons == 1 || (profileData.PrimaryPhysicalSymptoms[0] == 1 && profileData.PrimaryPhysicalSymptoms[1] == 1 && profileData.PrimaryPhysicalSymptoms[2] == 1 && profileData.PrimaryPhysicalSymptoms[3] == 1) || (profileData.AreasMostAffected[0] == 1 && profileData.AreasMostAffected[1] == 1 && profileData.AreasMostAffected[2] == 1 && profileData.AreasMostAffected[3] == 1 && profileData.AreasMostAffected[4] == 1) || (profileData.MobilityLevel == 1) || (profileData.ExerciseHistory == 1) || (profileData.MovementLimitations[0] == 1 && profileData.MovementLimitations[1] == 1 && profileData.MovementLimitations[2] == 1 && profileData.MovementLimitations[3] == 1 && profileData.MovementLimitations[4] == 1) || (profileData.Goals[0] == 1 && profileData.Goals[1] == 1 && profileData.Goals[2] == 1)){
+                Toast.makeText(getApplicationContext(), "Error: Incomplete/Missing Fields", Toast.LENGTH_LONG).show();
+            }
+            else {
+                profileJsonHandler.saveProfile(this, profileData);
+                startActivity(new Intent(ProfileActivity.this, MainActivity.class));
+                Toast.makeText(getApplicationContext(), "submit Button clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+        homeButton.setOnClickListener(v -> {
             startActivity(new Intent(ProfileActivity.this, MainActivity.class));
-            Toast.makeText(getApplicationContext(), "submit Button clicked", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "home Button clicked", Toast.LENGTH_SHORT).show();
         });
     }
 
