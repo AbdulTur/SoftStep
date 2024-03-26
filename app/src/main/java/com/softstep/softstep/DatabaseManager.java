@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.sql.SQLDataException;
+import android.database.sqlite.SQLiteException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseManager {
 
@@ -17,7 +20,7 @@ public class DatabaseManager {
         context = _context;
     }
 
-    public DatabaseManager open() throws SQLDataException {
+    public DatabaseManager open() throws SQLiteException {
         dbHelper = new DatabaseHelper(context);
         database = dbHelper.getWritableDatabase();
         return this;
@@ -45,5 +48,41 @@ public class DatabaseManager {
         }
         return cursor;
     }
+
+    public List<Exercise> fetchExercisesByConditions(List<Integer> conditionIds) {
+        List<Exercise> matchedExercises = new ArrayList<>();
+        for (Integer conditionId : conditionIds) {
+            String selection = DatabaseHelper.EXERCISE_TAGS + " LIKE ?";
+            String[] selectionArgs = new String[]{"%" + conditionId + "%"};
+            Cursor cursor = database.query(DatabaseHelper.DATABASE_TABLE, null, selection, selectionArgs, null, null, null);
+
+            while (cursor.moveToNext()) {
+
+                int idIndex = cursor.getColumnIndex(DatabaseHelper.EXERCISE_ID);
+                int nameIndex = cursor.getColumnIndex(DatabaseHelper.EXERCISE_NAME);
+                int descriptionIndex = cursor.getColumnIndex(DatabaseHelper.EXERCISE_DESCRIPTION);
+                int instructionsIndex = cursor.getColumnIndex(DatabaseHelper.EXERCISE_INSTRUCTIONS);
+                int videoPathIndex = cursor.getColumnIndex(DatabaseHelper.EXERCISE_VIDEOPATH);
+                int tagsIndex = cursor.getColumnIndex(DatabaseHelper.EXERCISE_TAGS);
+
+                if (idIndex != -1 && nameIndex != -1 && descriptionIndex != -1 && instructionsIndex != -1 && videoPathIndex != -1 && tagsIndex != -1) {
+                    Exercise exercise = new Exercise(
+                            cursor.getInt(idIndex),
+                            cursor.getString(nameIndex),
+                            cursor.getString(descriptionIndex),
+                            cursor.getString(instructionsIndex),
+                            cursor.getString(videoPathIndex),
+                            cursor.getString(tagsIndex)
+                    );
+                    if (!matchedExercises.contains(exercise)) {
+                        matchedExercises.add(exercise);
+                    }
+                }
+            }
+            cursor.close();
+        }
+        return matchedExercises;
+    }
+
 
 }

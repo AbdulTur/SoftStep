@@ -81,12 +81,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "path/to/video16", "path/to/video17", "path/to/video18", "path/to/video19", "path/to/video20",
                 "path/to/video21", "path/to/video22", "path/to/video23", "path/to/video24", "path/to/video25",
                 "path/to/video26", "path/to/video27", "path/to/video28", "path/to/video29", "path/to/video30"};
-        String[] tags = {"tag1, tag2", "tag3, tag4", "tag5, tag6", "tag7, tag8", "tag9, tag10",
-                "tag11, tag12", "tag13, tag14", "tag15, tag16", "tag17, tag18", "tag19, tag20",
-                "tag21, tag22", "tag23, tag24", "tag25, tag26", "tag27, tag28", "tag29, tag30",
-                "tag31, tag32", "tag33, tag34", "tag35, tag36", "tag37, tag38", "tag39, tag40",
-                "tag41, tag42", "tag43, tag44", "tag45, tag46", "tag47, tag48", "tag49, tag50",
-                "tag51, tag52", "tag53, tag54", "tag55, tag56", "tag57, tag58", "tag59, tag60"};
+        String[] tags = {
+                "2131231177",
+                "2131231178",
+                "2131231179",
+                "2131231180",
+                "2131231181",
+                "2131231177",
+                "2131231178",
+                "2131231179",
+                "2131231180",
+                "2131231181",
+                "2131231177",
+                "2131231178",
+                "2131231179",
+                "2131231180",
+                "2131231181",
+                "2131231177",
+                "2131231178",
+                "2131231179",
+                "2131231180",
+                "2131231181",
+                "2131231177",
+                "2131231178",
+                "2131231179",
+                "2131231180",
+                "2131231181",
+                "2131231177",
+                "2131231178",
+                "2131231179",
+                "2131231180",
+                "2131231181"};
         for (int i = 0; i < exerciseNames.length; i++) {
             ContentValues values = new ContentValues();
             values.put(EXERCISE_NAME, exerciseNames[i]);

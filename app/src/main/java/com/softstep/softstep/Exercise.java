@@ -7,12 +7,15 @@ public class Exercise {
     private String instructions;
     private String videoPath;
 
-    public Exercise(int id, String name, String description, String instructions, String videoPath) {
+    private String tags;
+
+    public Exercise(int id, String name, String description, String instructions, String videoPath, String tags) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.instructions = instructions;
         this.videoPath = videoPath;
+        this.tags = tags;
     }
 
 
@@ -38,4 +41,6 @@ public class Exercise {
     public String getVideoPath() {
         return videoPath;
     }
+
+    public String getTags(){return tags;}
 }
