@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_grey"
-    tools:context=".Exercise1Activity">
+    tools:context=".ExerciseActivity">
 
     <View
         android:id="@+id/headerViewExercise"
@@ -61,33 +61,46 @@
                 android:layout_height="wrap_content"
                 android:text="Description: Leg lifts help strengthen the leg muscles."
                 android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/exerciseInstructions1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:text="Instructions: Sit in a chair and lift one leg at a time. Repeat 10 times for each leg."
                 android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@id/exerciseDescription1"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="16dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/exerciseDescription1" />
 
             <TextView
                 android:id="@+id/videoPath1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:text="Video Path: [YouTube Link Here]"
                 android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@id/exerciseInstructions1"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="16dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/exerciseInstructions1" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+    <WebView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="250sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="305dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
