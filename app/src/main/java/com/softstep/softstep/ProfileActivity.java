@@ -160,6 +160,8 @@ public class ProfileActivity extends AppCompatActivity {
                 profileJsonHandler.saveProfile(this, profileData);
                 startActivity(new Intent(ProfileActivity.this, MainActivity.class));
                 Toast.makeText(getApplicationContext(), "submit Button clicked", Toast.LENGTH_SHORT).show();
+                RecommendationEngine recommendationEngine = new RecommendationEngine(getApplicationContext());
+                recommendationEngine.generateAndSaveRecommendations(getApplicationContext());
             }
         });
         homeButton.setOnClickListener(v -> {
