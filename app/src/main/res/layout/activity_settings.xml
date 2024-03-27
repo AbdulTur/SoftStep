@@ -15,8 +15,8 @@
         android:background="@color/soft_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/headerViewSettings"
+        app:layout_constraintBottom_toBottomOf="@id/headerViewSettings" />
 
     <ImageButton
         android:id="@+id/backButton"
