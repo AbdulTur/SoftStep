@@ -14,8 +14,8 @@
         android:layout_marginTop="4dp"
         android:background="@color/soft_blue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/headerViewExercise"
+        app:layout_constraintBottom_toBottomOf="@id/headerViewExercise" />
 
     <ImageButton
         android:id="@+id/backButton"

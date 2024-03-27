@@ -3,6 +3,7 @@ package com.softstep.softstep;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
@@ -69,16 +70,14 @@ public class MainActivity extends AppCompatActivity {
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
-            layoutParams.setMargins(16, 16, 16, 16); // Adjust margins as needed
+            layoutParams.setMargins(16, 16, 16, 16);
             exerciseButton.setLayoutParams(layoutParams);
-
-            // Style the button (optional)
-            exerciseButton.setBackgroundColor(getResources().getColor(R.color.soft_blue));
+            exerciseButton.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.rounded_button, null));
             exerciseButton.setTextColor(getResources().getColor(android.R.color.white));
 
             // Add the button to the LinearLayout container
             exercisesContainer.addView(exerciseButton);
         }
     }
-
 }
+

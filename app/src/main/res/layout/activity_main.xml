@@ -11,63 +11,52 @@
         android:id="@+id/headerViewMain"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_marginTop="4dp"
         android:background="@color/soft_blue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/profileText"
+    <ImageView
+        android:id="@+id/appLogoImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="167dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="168dp"
-        android:fontFamily="@font/typo_round_regular_demo"
-        android:text="Home"
-        android:textColor="@color/white"
-        android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:srcCompat="@mipmap/ic_applogo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/headerViewMain"
+        app:layout_constraintBottom_toBottomOf="@id/headerViewMain"
+        app:layout_constraintHorizontal_bias="0.5" />
 
     <ImageButton
         android:id="@+id/profileButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="20dp"
+        app:srcCompat="@drawable/baseline_account_circle_24"
         android:background="@android:color/transparent"
-        android:contentDescription="@string/profile_button_description"
-        android:padding="3dp"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@id/headerViewMain"
+        android:padding="3dp"
+        android:contentDescription="@string/profile_button_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/headerViewMain"
-        app:srcCompat="@drawable/baseline_accessibility_24" />
+        app:layout_constraintBottom_toBottomOf="@id/headerViewMain"
+        android:layout_marginEnd="16dp" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollViewMain"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/headerViewMain">
+        app:layout_constraintTop_toBottomOf="@id/headerViewMain"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:id="@+id/exercisesContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:padding="16dp">
-
+            android:padding="16dp"
+            android:gravity="center_horizontal">
             <!-- Buttons will be dynamically added here -->
-
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
