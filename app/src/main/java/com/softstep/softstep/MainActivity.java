@@ -2,7 +2,9 @@ package com.softstep.softstep;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize the ImageButton for the profile
         ImageButton profileButton = findViewById(R.id.profileButton);
+
         profileButton.setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, ProfileActivity.class));
             Toast.makeText(getApplicationContext(), "Profile Button was clicked", Toast.LENGTH_SHORT).show();
@@ -32,11 +35,17 @@ public class MainActivity extends AppCompatActivity {
         ExerciseJsonHandler exerciseJsonHandler = new ExerciseJsonHandler();
         List<Exercise> exercises = exerciseJsonHandler.loadExercises(this);
 
+        int i = 0;
         // Dynamically create and add buttons for each exercise
         for (Exercise exercise : exercises) {
+            i++;
             Button exerciseButton = new Button(this);
             exerciseButton.setText(exercise.getName());
+            int finalI = i;
             exerciseButton.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, ExerciseActivity.class);
+                intent.putExtra("EXERCISE_ID", String.valueOf(finalI));
+                startActivity(intent);
                 Toast.makeText(MainActivity.this, "Clicked on " + exercise.getName(), Toast.LENGTH_SHORT).show();
 
             });

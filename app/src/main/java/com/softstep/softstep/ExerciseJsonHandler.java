@@ -29,9 +29,10 @@ public class ExerciseJsonHandler {
 
 
     public List<Exercise> loadInitialExercises(Context context) {
-        AssetManager assetManager = context.getAssets();
-        try (InputStream is = assetManager.open(JSON_FILE_NAME);
-             Reader reader = new InputStreamReader(is)) {
+        try  {
+            AssetManager assetManager = context.getAssets();
+            InputStream is = assetManager.open(JSON_FILE_NAME);
+            Reader reader = new InputStreamReader(is);
             Type exerciseListType = new TypeToken<List<Exercise>>() {}.getType();
             return gson.fromJson(reader, exerciseListType);
         } catch (IOException e) {
