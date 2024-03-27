@@ -55,8 +55,8 @@ public class RecommendationEngine {
         } catch (android.database.sqlite.SQLiteException e) {
             e.printStackTrace();
         } finally {
-            dbManager.close();
-        }
+        dbManager.close();
+    }
 
 
         exerciseJsonHandler.saveExercises(context, matchedExercises);
