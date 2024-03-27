@@ -50,6 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:text="Profile"
+        android:fontFamily="@font/typo_round_regular_demo"
         android:textSize="28sp"
         android:textColor="@color/white"
         app:layout_constraintStart_toEndOf="@id/homeButton"
