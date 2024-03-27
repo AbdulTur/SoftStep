@@ -35,11 +35,17 @@ public class MainActivity extends AppCompatActivity {
         ExerciseJsonHandler exerciseJsonHandler = new ExerciseJsonHandler();
         List<Exercise> exercises = exerciseJsonHandler.loadExercises(this);
 
+        int i = 0;
         // Dynamically create and add buttons for each exercise
         for (Exercise exercise : exercises) {
+            i++;
             Button exerciseButton = new Button(this);
             exerciseButton.setText(exercise.getName());
+            int finalI = i;
             exerciseButton.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, ExerciseActivity.class);
+                intent.putExtra("EXERCISE_ID", String.valueOf(finalI));
+                startActivity(intent);
                 Toast.makeText(MainActivity.this, "Clicked on " + exercise.getName(), Toast.LENGTH_SHORT).show();
 
             });
