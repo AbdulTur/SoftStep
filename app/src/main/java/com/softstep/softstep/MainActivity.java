@@ -8,40 +8,19 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.List;
 
-    DatabaseManager dbManager;
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //BEGIN DATABASE TEST
-        //TEST PRINTS EXERCISE ID TO LOGCAT
-
-        dbManager = new DatabaseManager(this);
-
-        try {
-            dbManager.open();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        Cursor cursor = dbManager.fetch();
-
-        if (cursor.moveToFirst()) {
-            do {
-                @SuppressLint("Range") String ID = cursor.getString(cursor.getColumnIndex(DatabaseHelper.EXERCISE_ID));
-                System.out.println(ID);
-            } while (cursor.moveToNext());
-        }
-
-        //END DATABASE TEST
-
+        // Initialize the ImageButton for the profile
         ImageButton profileButton = findViewById(R.id.profileButton);
 
         profileButton.setOnClickListener(v -> {
@@ -49,33 +28,36 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Profile Button was clicked", Toast.LENGTH_SHORT).show();
         });
 
-        ImageButton legLiftButton = findViewById(R.id.legLift);
+        // Get the LinearLayout container
+        LinearLayout exercisesContainer = findViewById(R.id.exercisesContainer);
 
-        legLiftButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, ExerciseActivity.class);
-            intent.putExtra("EXERCISE_ID", "1");
-            startActivity(intent);
-            Toast.makeText(getApplicationContext(), "Leg Lift Button was clicked", Toast.LENGTH_SHORT).show();
-        });
+        // Load the exercises from the JSON file in internal storage
+        ExerciseJsonHandler exerciseJsonHandler = new ExerciseJsonHandler();
+        List<Exercise> exercises = exerciseJsonHandler.loadExercises(this);
 
-        ImageButton armCirclesButton = findViewById(R.id.armCircles);
+        // Dynamically create and add buttons for each exercise
+        for (Exercise exercise : exercises) {
+            Button exerciseButton = new Button(this);
+            exerciseButton.setText(exercise.getName());
+            exerciseButton.setOnClickListener(v -> {
+                Toast.makeText(MainActivity.this, "Clicked on " + exercise.getName(), Toast.LENGTH_SHORT).show();
 
-        armCirclesButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, ExerciseActivity.class);
-            intent.putExtra("EXERCISE_ID", "2");
-            startActivity(intent);
-            Toast.makeText(getApplicationContext(), "Heel to Toe Button was clicked", Toast.LENGTH_SHORT).show();
-        });
+            });
 
-        ImageButton heelToToeButton = findViewById(R.id.heelToToe);
+            // Set layout parameters for the button
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+            layoutParams.setMargins(16, 16, 16, 16); // Adjust margins as needed
+            exerciseButton.setLayoutParams(layoutParams);
 
-        heelToToeButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, ExerciseActivity.class);
-            intent.putExtra("EXERCISE_ID", "3");
-            startActivity(intent);
-            Toast.makeText(getApplicationContext(), "Heel to Toe Button was clicked", Toast.LENGTH_SHORT).show();
-        });
+            // Style the button (optional)
+            exerciseButton.setBackgroundColor(getResources().getColor(R.color.soft_blue));
+            exerciseButton.setTextColor(getResources().getColor(android.R.color.white));
 
-
+            // Add the button to the LinearLayout container
+            exercisesContainer.addView(exerciseButton);
+        }
     }
 }
