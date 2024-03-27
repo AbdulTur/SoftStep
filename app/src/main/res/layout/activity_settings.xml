@@ -14,6 +14,7 @@
         android:layout_marginTop="4dp"
         android:background="@color/soft_blue"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,16 +56,6 @@
             android:layout_height="wrap_content"
             android:padding="16dp">
 
-            <TextView
-                android:id="@+id/settingsPlaceholder"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Settings Temporarily Unavailable"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <Button
                 android:id="@+id/timePickerButton"
                 android:layout_width="wrap_content"
@@ -74,6 +65,20 @@
                 android:layout_marginEnd="78dp"
                 android:layout_marginBottom="539dp"
                 android:text="Select Notification Time"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/changeThemeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="122dp"
+                android:layout_marginTop="201dp"
+                android:layout_marginEnd="123dp"
+                android:layout_marginBottom="422dp"
+                android:text="Toggle Theme"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

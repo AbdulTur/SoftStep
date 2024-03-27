@@ -1,9 +1,11 @@
 package com.softstep.softstep;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -38,6 +40,22 @@ public class SettingsActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Back Button was clicked", Toast.LENGTH_SHORT).show();
         });
 
+        Button switchThemeButton = findViewById(R.id.changeThemeButton);
+        switchThemeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Toggle between light and dark mode
+                int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+                if (currentNightMode == Configuration.UI_MODE_NIGHT_NO) {
+                    // Switch to dark mode
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                } else {
+                    // Switch to light mode
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
+                recreate(); // Recreate the activity to apply the new theme
+            }
+        });
     }
 
     private void showTimePickerDialog() {
