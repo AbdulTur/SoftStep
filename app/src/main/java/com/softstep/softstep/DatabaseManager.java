@@ -57,7 +57,6 @@ public class DatabaseManager {
             Cursor cursor = database.query(DatabaseHelper.DATABASE_TABLE, null, selection, selectionArgs, null, null, null);
 
             while (cursor.moveToNext()) {
-
                 int idIndex = cursor.getColumnIndex(DatabaseHelper.EXERCISE_ID);
                 int nameIndex = cursor.getColumnIndex(DatabaseHelper.EXERCISE_NAME);
                 int descriptionIndex = cursor.getColumnIndex(DatabaseHelper.EXERCISE_DESCRIPTION);
@@ -66,15 +65,25 @@ public class DatabaseManager {
                 int tagsIndex = cursor.getColumnIndex(DatabaseHelper.EXERCISE_TAGS);
 
                 if (idIndex != -1 && nameIndex != -1 && descriptionIndex != -1 && instructionsIndex != -1 && videoPathIndex != -1 && tagsIndex != -1) {
-                    Exercise exercise = new Exercise(
-                            cursor.getInt(idIndex),
-                            cursor.getString(nameIndex),
-                            cursor.getString(descriptionIndex),
-                            cursor.getString(instructionsIndex),
-                            cursor.getString(videoPathIndex),
-                            cursor.getString(tagsIndex)
-                    );
-                    if (!matchedExercises.contains(exercise)) {
+                    int currentId = cursor.getInt(idIndex);
+                    boolean isDuplicate = false;
+
+                    for (Exercise existingExercise : matchedExercises) {
+                        if (existingExercise.getId() == currentId) {
+                            isDuplicate = true;
+                            break;
+                        }
+                    }
+
+                    if (!isDuplicate) {
+                        Exercise exercise = new Exercise(
+                                cursor.getInt(idIndex),
+                                cursor.getString(nameIndex),
+                                cursor.getString(descriptionIndex),
+                                cursor.getString(instructionsIndex),
+                                cursor.getString(videoPathIndex),
+                                cursor.getString(tagsIndex)
+                        );
                         matchedExercises.add(exercise);
                     }
                 }
