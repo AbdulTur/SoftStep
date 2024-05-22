@@ -50,13 +50,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:text="Profile"
-        android:fontFamily="@font/typo_round_regular_demo"
         android:textSize="28sp"
         android:textColor="@color/white"
-        app:layout_constraintStart_toEndOf="@id/homeButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/headerView"
         app:layout_constraintTop_toTopOf="@id/headerView" />
-
 
 
     <androidx.core.widget.NestedScrollView
@@ -64,34 +63,36 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@id/submitButton"
         app:layout_constraintTop_toBottomOf="@id/headerView"
-        app:layout_constraintBottom_toTopOf="@id/submitButton">
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="15dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
 
-
             <TextView
                 android:id="@+id/stageOfParkinsonsLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Stage of Parkinson's"
-                android:layout_marginTop="16dp"
-                android:textSize="21sp"
                 android:layout_marginStart="25dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_marginTop="16dp"
+                android:text="Stage of Parkinson's"
+                android:textColor="@color/prime"
+                android:textSize="21sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <RadioGroup
                 android:id="@+id/stageOfParkinsonsGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginStart="25dp"
-                app:layout_constraintTop_toBottomOf="@id/stageOfParkinsonsLabel"
-                app:layout_constraintStart_toStartOf="parent">
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stageOfParkinsonsLabel">
 
                 <RadioButton
                     android:id="@+id/stage1"
@@ -124,125 +125,154 @@
                     android:text="5" />
 
             </RadioGroup>
+
             <TextView
                 android:id="@+id/primarySymptomsLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Primary Physical Symptoms"
+                android:layout_marginStart="25dp"
                 android:layout_marginTop="16dp"
+                android:text="Primary Physical Symptoms"
+                android:textColor="@color/prime"
                 android:textSize="20sp"
-                android:layout_marginStart="25dp"
-                app:layout_constraintTop_toBottomOf="@+id/stageOfParkinsonsGroup"
-                app:layout_constraintStart_toStartOf="parent" />
-            <CheckBox
-                android:id="@+id/checkBoxTremors"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/stageOfParkinsonsGroup" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupSymptoms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tremors"
                 android:layout_marginStart="25dp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/primarySymptomsLabel"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:singleSelection="false">
 
-            <CheckBox
-                android:id="@+id/checkBoxBradykinesia"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Bradykinesia"
-                android:layout_marginStart="25dp"
-                app:layout_constraintTop_toBottomOf="@id/checkBoxTremors"
-                app:layout_constraintStart_toStartOf="parent"/>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/checkBoxTremors"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tremors"
+                    android:checkable="true"
+                    app:chipIconEnabled="false"
+                    app:chipBackgroundColor="@color/chip_background" />
 
-            <CheckBox
-                android:id="@+id/checkBoxRigidity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rigidity"
-                app:layout_constraintTop_toBottomOf="@id/checkBoxBradykinesia"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="25dp"/>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/checkBoxBradykinesia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bradykinesia"
+                    android:checkable="true"
+                    app:chipIconEnabled="false"
+                    app:chipBackgroundColor="@color/chip_background" />
 
-            <CheckBox
-                android:id="@+id/checkBoxPosturalInstability"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Postural Instability"
-                app:layout_constraintTop_toBottomOf="@id/checkBoxRigidity"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="25dp"/>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/checkBoxRigidity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rigidity"
+                    android:checkable="true"
+                    app:chipIconEnabled="false"
+                    app:chipBackgroundColor="@color/chip_background" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/checkBoxPosturalInstability"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Postural Instability"
+                    android:checkable="true"
+                    app:chipIconEnabled="false"
+                    app:chipBackgroundColor="@color/chip_background" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+
+
 
             <TextView
                 android:id="@+id/areaAffectedLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Areas Most Affected"
+                android:layout_marginStart="25dp"
                 android:layout_marginTop="16dp"
+                android:text="Areas Most Affected"
+                android:textColor="@color/prime"
                 android:textSize="20sp"
-                android:layout_marginStart="25dp"
-                app:layout_constraintTop_toBottomOf="@+id/checkBoxPosturalInstability"
-                app:layout_constraintStart_toStartOf="parent" />
-            <CheckBox
-                android:id="@+id/checkBoxHands"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chipGroupSymptoms" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupAreasAffected"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hands"
                 android:layout_marginStart="25dp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/areaAffectedLabel"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:singleSelection="false">
 
-            <CheckBox
-                android:id="@+id/checkBoxArms"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Arms"
-                android:layout_marginStart="25dp"
-                app:layout_constraintTop_toBottomOf="@id/checkBoxHands"
-                app:layout_constraintStart_toStartOf="parent"/>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/checkBoxHands"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hands"
+                    android:checkable="true"
+                    app:chipBackgroundColor="@color/chip_background" />
 
-            <CheckBox
-                android:id="@+id/checkBoxLegs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Legs"
-                app:layout_constraintTop_toBottomOf="@id/checkBoxArms"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="25dp"/>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/checkBoxArms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Arms"
+                    android:checkable="true"
+                    app:chipBackgroundColor="@color/chip_background" />
 
-            <CheckBox
-                android:id="@+id/checkBoxNeck"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Neck"
-                app:layout_constraintTop_toBottomOf="@id/checkBoxLegs"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="25dp"/>
-            <CheckBox
-                android:id="@+id/checkBoxFace"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Face"
-                app:layout_constraintTop_toBottomOf="@id/checkBoxNeck"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="25dp"/>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/checkBoxLegs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Legs"
+                    android:checkable="true"
+                    app:chipBackgroundColor="@color/chip_background" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/checkBoxNeck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Neck"
+                    android:checkable="true"
+                    app:chipBackgroundColor="@color/chip_background" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/checkBoxFace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Face"
+                    android:checkable="true"
+                    app:chipBackgroundColor="@color/chip_background" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+
 
             <TextView
                 android:id="@+id/mobilityLevelLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mobility Level"
-                android:layout_marginTop="16dp"
-                android:textSize="21sp"
                 android:layout_marginStart="25dp"
-                app:layout_constraintTop_toBottomOf="@id/checkBoxFace"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_marginTop="16dp"
+                android:text="Mobility Level"
+                android:textColor="@color/prime"
+                android:textSize="21sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chipGroupAreasAffected" />
 
             <RadioGroup
                 android:id="@+id/mobilityLevelGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginStart="25dp"
-                app:layout_constraintTop_toBottomOf="@id/mobilityLevelLabel"
-                app:layout_constraintStart_toStartOf="parent">
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mobilityLevelLabel">
 
                 <RadioButton
                     android:id="@+id/noIssues"
@@ -280,21 +310,22 @@
                 android:id="@+id/exerciseHistoryLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Exercise History"
-                android:layout_marginTop="16dp"
-                android:textSize="21sp"
                 android:layout_marginStart="25dp"
-                app:layout_constraintTop_toBottomOf="@id/mobilityLevelGroup"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_marginTop="16dp"
+                android:text="Exercise History"
+                android:textColor="@color/prime"
+                android:textSize="21sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mobilityLevelGroup" />
 
             <RadioGroup
                 android:id="@+id/exerciseHistoryGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginStart="25dp"
-                app:layout_constraintTop_toBottomOf="@id/exerciseHistoryLabel"
-                app:layout_constraintStart_toStartOf="parent">
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/exerciseHistoryLabel">
 
                 <RadioButton
                     android:id="@+id/reg"
@@ -326,101 +357,123 @@
                 android:id="@+id/limitationsLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Limitations"
+                android:layout_marginStart="25dp"
                 android:layout_marginTop="16dp"
+                android:text="Limitations"
+                android:textColor="@color/prime"
                 android:textSize="20sp"
-                android:layout_marginStart="25dp"
-                app:layout_constraintTop_toBottomOf="@+id/exerciseHistoryGroup"
-                app:layout_constraintStart_toStartOf="parent" />
-            <CheckBox
-                android:id="@+id/checkBoxNoLimit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/exerciseHistoryGroup" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupLimitations"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No limitations"
                 android:layout_marginStart="25dp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/limitationsLabel"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:singleSelection="false">
 
-            <CheckBox
-                android:id="@+id/checkBoxEndurance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Endurance issues (fatigue quickly)"
-                android:layout_marginStart="25dp"
-                app:layout_constraintTop_toBottomOf="@id/checkBoxNoLimit"
-                app:layout_constraintStart_toStartOf="parent"/>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/checkBoxNoLimit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No limitations"
+                    android:checkable="true"
+                    app:chipBackgroundColor="@color/chip_background" />
 
-            <CheckBox
-                android:id="@+id/checkBoxBalance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Balance issues (risk of falls)"
-                app:layout_constraintTop_toBottomOf="@id/checkBoxEndurance"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="25dp"/>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/checkBoxEndurance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Endurance issues (fatigue quickly)"
+                    android:checkable="true"
+                    app:chipBackgroundColor="@color/chip_background" />
 
-            <CheckBox
-                android:id="@+id/checkBoxJoint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Joint pain or discomfort"
-                app:layout_constraintTop_toBottomOf="@id/checkBoxBalance"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="25dp"/>
-            <CheckBox
-                android:id="@+id/checkBoxOther"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Other"
-                app:layout_constraintTop_toBottomOf="@id/checkBoxJoint"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="25dp"/>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/checkBoxBalance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Balance issues (risk of falls)"
+                    android:checkable="true"
+                    app:chipBackgroundColor="@color/chip_background" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/checkBoxJoint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Joint pain or discomfort"
+                    android:checkable="true"
+                    app:chipBackgroundColor="@color/chip_background" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/checkBoxOther"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Other"
+                    android:checkable="true"
+                    app:chipBackgroundColor="@color/chip_background" />
+
+            </com.google.android.material.chip.ChipGroup>
 
             <TextView
                 android:id="@+id/goalsLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Goals"
+                android:layout_marginStart="25dp"
                 android:layout_marginTop="16dp"
+                android:text="Goals"
+                android:textColor="@color/prime"
                 android:textSize="20sp"
-                android:layout_marginStart="25dp"
-                app:layout_constraintTop_toBottomOf="@+id/checkBoxOther"
-                app:layout_constraintStart_toStartOf="parent" />
-            <CheckBox
-                android:id="@+id/checkBoxFlex"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Improve Flexibility"
-                android:layout_marginStart="25dp"
-                app:layout_constraintTop_toBottomOf="@id/goalsLabel"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-            <CheckBox
-                android:id="@+id/checkBoxMuscle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Increase muscle strength"
-                android:layout_marginStart="25dp"
-                app:layout_constraintTop_toBottomOf="@id/checkBoxFlex"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-            <CheckBox
-                android:id="@+id/checkBoxBalanceAndCoordination"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Enhance balance and coordination"
-                app:layout_constraintTop_toBottomOf="@id/checkBoxMuscle"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="25dp"/>
+                app:layout_constraintTop_toBottomOf="@id/chipGroupLimitations" />
+
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupGoals"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/goalsLabel"
+                app:singleSelection="false">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/checkBoxFlex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Improve Flexibility"
+                    android:checkable="true"
+                    app:chipBackgroundColor="@color/chip_background" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/checkBoxMuscle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Increase muscle strength"
+                    android:checkable="true"
+                    app:chipBackgroundColor="@color/chip_background" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/checkBoxBalanceAndCoordination"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enhance balance and coordination"
+                    android:checkable="true"
+                    app:chipBackgroundColor="@color/chip_background" />
+
+            </com.google.android.material.chip.ChipGroup>
 
             <View
                 android:id="@+id/formContentBottomSpacer"
                 android:layout_width="match_parent"
                 android:layout_height="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/checkBoxBalanceAndCoordination"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chipGroupGoals" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+
     <View
         android:id="@+id/submitButtonSpacer"
         android:layout_width="match_parent"
