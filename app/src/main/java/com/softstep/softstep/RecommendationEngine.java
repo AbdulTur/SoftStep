@@ -22,32 +22,6 @@ public class RecommendationEngine {
             profileData = profileJsonHandler.loadInitialProfile(context);
         }
 
-//        List<Integer> conditionIds = new ArrayList<>();
-//        conditionIds.add(profileData.StageOfParkinsons);
-//        for (int symptom : profileData.PrimaryPhysicalSymptoms) {
-//            if (symptom != 1) {
-//                conditionIds.add(symptom);
-//            }
-//        }
-//        for (int area : profileData.AreasMostAffected) {
-//            if (area != 1) {
-//                conditionIds.add(area);
-//            }
-//        }
-//        conditionIds.add(profileData.MobilityLevel);
-//        conditionIds.add(profileData.ExerciseHistory);
-//        for (int limitation : profileData.MovementLimitations) {
-//            if (limitation != 1) {
-//                conditionIds.add(limitation);
-//            }
-//        }
-//
-//        for (int goal : profileData.Goals) {
-//            if (goal != 1) {
-//                conditionIds.add(goal);
-//            }
-//        }
-
         List<Exercise> matchedExercises = new ArrayList<>();
         try {
             dbManager.open();

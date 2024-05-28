@@ -18,7 +18,7 @@ public class ProfileJsonHandler {
     private static final String JSON_FILE_PATH = "UserProfile.json";
     private final Gson gson = new Gson();
 
-    // Method to load initial profile from assets
+
     public ProfileData loadInitialProfile(Context context) {
         try {
             AssetManager assetManager = context.getAssets();
@@ -30,10 +30,10 @@ public class ProfileJsonHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new ProfileData(); // Return a new instance with default values if loading fails
+        return new ProfileData();
     }
 
-    // Method to save modified profile to internal storage
+
     public void saveProfile(Context context, ProfileData profileData) {
         try {
             FileOutputStream fos = context.openFileOutput(JSON_FILE_PATH, Context.MODE_PRIVATE);
@@ -45,7 +45,7 @@ public class ProfileJsonHandler {
         }
     }
 
-    // Method to load modified profile from internal storage
+
     public ProfileData loadModifiedProfile(Context context) {
         File file = new File(context.getFilesDir(), JSON_FILE_PATH);
         if (file.exists()) {
@@ -59,6 +59,6 @@ public class ProfileJsonHandler {
                 e.printStackTrace();
             }
         }
-        return null; // Return null if no modified profile is found
+        return null;
     }
 }

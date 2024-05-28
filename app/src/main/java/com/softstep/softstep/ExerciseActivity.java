@@ -1,7 +1,6 @@
 package com.softstep.softstep;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.webkit.WebChromeClient;
@@ -43,8 +42,8 @@ public class ExerciseActivity extends AppCompatActivity {
         instructionsTV.setText((exercise.getInstructions()));
 
         WebView videoView = findViewById(R.id.videoView);
-        String video = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/cRLB7WqX0fU?si=67iv4nzlgIiGpucl\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>";
-        videoView.loadData(video,  "text/html", "utf-8");
+        String video = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/JQCcOqzI0nY\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>";
+        videoView.loadData(video, "text/html", "utf-8");
         videoView.getSettings().setJavaScriptEnabled(true);
         videoView.setWebChromeClient(new WebChromeClient());
 
@@ -54,6 +53,5 @@ public class ExerciseActivity extends AppCompatActivity {
             startActivity(new Intent(ExerciseActivity.this, MainActivity.class));
             Toast.makeText(getApplicationContext(), "Back Button was clicked", Toast.LENGTH_SHORT).show();
         });
-
     }
 }

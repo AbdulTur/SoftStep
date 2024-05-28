@@ -32,68 +32,25 @@ public class DatabaseManager {
         dbHelper.close();
     }
 
-    public void insert (String name, String description, String instructions, String videopath, String tags){
+    public void insert (String name, String description, String instructions, String videopath, String tags, String image){
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.EXERCISE_NAME, name);
         contentValues.put(DatabaseHelper.EXERCISE_DESCRIPTION, description);
         contentValues.put(DatabaseHelper.EXERCISE_INSTRUCTIONS, instructions);
         contentValues.put(DatabaseHelper.EXERCISE_VIDEOPATH, videopath);
         contentValues.put(DatabaseHelper.EXERCISE_TAGS, tags);
+        contentValues.put(DatabaseHelper.EXERCISE_IMAGE, image);
         database.insert(DatabaseHelper.DATABASE_TABLE, null, contentValues);
     }
 
     public Cursor fetch() {
-        String [] columns = new String[] {DatabaseHelper.EXERCISE_ID, DatabaseHelper.EXERCISE_NAME, DatabaseHelper.EXERCISE_DESCRIPTION, DatabaseHelper.EXERCISE_INSTRUCTIONS, DatabaseHelper.EXERCISE_VIDEOPATH, DatabaseHelper.EXERCISE_TAGS };
+        String [] columns = new String[] {DatabaseHelper.EXERCISE_ID, DatabaseHelper.EXERCISE_NAME, DatabaseHelper.EXERCISE_DESCRIPTION, DatabaseHelper.EXERCISE_INSTRUCTIONS, DatabaseHelper.EXERCISE_VIDEOPATH, DatabaseHelper.EXERCISE_TAGS, DatabaseHelper.EXERCISE_IMAGE};
         Cursor cursor = database.query(DatabaseHelper.DATABASE_TABLE, columns, null, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }
         return cursor;
     }
-
-//    public List<Exercise> fetchExercisesByConditions(List<Integer> conditionIds) {
-//        List<Exercise> matchedExercises = new ArrayList<>();
-//        for (Integer conditionId : conditionIds) {
-//            String selection = DatabaseHelper.EXERCISE_TAGS + " LIKE ?";
-//            String[] selectionArgs = new String[]{"%" + conditionId + "%"};
-//            Cursor cursor = database.query(DatabaseHelper.DATABASE_TABLE, null, selection, selectionArgs, null, null, null);
-//
-//            while (cursor.moveToNext()) {
-//                int idIndex = cursor.getColumnIndex(DatabaseHelper.EXERCISE_ID);
-//                int nameIndex = cursor.getColumnIndex(DatabaseHelper.EXERCISE_NAME);
-//                int descriptionIndex = cursor.getColumnIndex(DatabaseHelper.EXERCISE_DESCRIPTION);
-//                int instructionsIndex = cursor.getColumnIndex(DatabaseHelper.EXERCISE_INSTRUCTIONS);
-//                int videoPathIndex = cursor.getColumnIndex(DatabaseHelper.EXERCISE_VIDEOPATH);
-//                int tagsIndex = cursor.getColumnIndex(DatabaseHelper.EXERCISE_TAGS);
-//
-//                if (idIndex != -1 && nameIndex != -1 && descriptionIndex != -1 && instructionsIndex != -1 && videoPathIndex != -1 && tagsIndex != -1) {
-//                    int currentId = cursor.getInt(idIndex);
-//                    boolean isDuplicate = false;
-//
-//                    for (Exercise existingExercise : matchedExercises) {
-//                        if (existingExercise.getId() == currentId) {
-//                            isDuplicate = true;
-//                            break;
-//                        }
-//                    }
-//
-//                    if (!isDuplicate) {
-//                        Exercise exercise = new Exercise(
-//                                cursor.getInt(idIndex),
-//                                cursor.getString(nameIndex),
-//                                cursor.getString(descriptionIndex),
-//                                cursor.getString(instructionsIndex),
-//                                cursor.getString(videoPathIndex),
-//                                cursor.getString(tagsIndex)
-//                        );
-//                        matchedExercises.add(exercise);
-//                    }
-//                }
-//            }
-//            cursor.close();
-//        }
-//        return matchedExercises;
-//    }
 
     private static void removeValueFromList(List<String> list, String value) {
         Iterator<String> iterator = list.iterator();
@@ -110,16 +67,18 @@ public class DatabaseManager {
         int instructionsIndex = cursor.getColumnIndex(DatabaseHelper.EXERCISE_INSTRUCTIONS);
         int videoPathIndex = cursor.getColumnIndex(DatabaseHelper.EXERCISE_VIDEOPATH);
         int tagsIndex = cursor.getColumnIndex(DatabaseHelper.EXERCISE_TAGS);
+        int imageIndex = cursor.getColumnIndex(DatabaseHelper.EXERCISE_IMAGE);
 
-        if (idIndex != -1 && nameIndex != -1 && descriptionIndex != -1 && instructionsIndex != -1 && videoPathIndex != -1 && tagsIndex != -1) {
+        if (idIndex != -1 && nameIndex != -1 && descriptionIndex != -1 && instructionsIndex != -1 && videoPathIndex != -1 && tagsIndex != -1 && imageIndex != -1) {
             int id = cursor.getInt(idIndex);
             String name = cursor.getString(nameIndex);
             String description = cursor.getString(descriptionIndex);
             String instructions = cursor.getString(instructionsIndex);
             String videoPath = cursor.getString(videoPathIndex);
             String tags = cursor.getString(tagsIndex);
+            String image = cursor.getString(imageIndex);
 
-            return new Exercise(id, name, description, instructions, videoPath, tags);
+            return new Exercise(id, name, description, instructions, videoPath, tags, image);
         }
         return null;
     }
@@ -137,7 +96,7 @@ public class DatabaseManager {
         while (iterator.hasNext()) {
             Exercise exercise = iterator.next();
             if (!containsAnySymptom(exercise.getTags(), primaryPhysicalSymptoms)) {
-                iterator.remove();  // Remove the exercise if no symptoms match
+                iterator.remove();
             }
         }
     }
@@ -159,10 +118,6 @@ public class DatabaseManager {
     public List<Exercise> fetchExercisesByConditions(ProfileData profileData) {
 
         String stage = profileData.StageOfParkinsons;
-//        List<String> PrimaryPhysicalSymptoms = Arrays.asList(profileData.PrimaryPhysicalSymptoms);
-//        List<String> area = Arrays.asList(profileData.AreasMostAffected);
-//        List<String> MovementLimitations = Arrays.asList(profileData.MovementLimitations);
-//        List<String> Goals = Arrays.asList(profileData.Goals);
         String MobilityLevel = profileData.MobilityLevel;
         String ExerciseHistory = profileData.ExerciseHistory;
 
