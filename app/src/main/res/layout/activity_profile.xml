@@ -20,7 +20,7 @@
         android:id="@+id/homeButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        app:srcCompat="@drawable/home_button_art"
+        app:srcCompat="@drawable/baseline_arrow_back_ios_24"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         android:padding="3dp"

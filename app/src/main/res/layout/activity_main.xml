@@ -18,9 +18,9 @@
 
     <ImageView
         android:id="@+id/appLogoImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/ic_applogo"
+        android:layout_width="47dp"
+        android:layout_height="47dp"
+        app:srcCompat="@drawable/logo__2_"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/headerViewMain"
@@ -59,4 +59,5 @@
             <!-- Buttons will be dynamically added here -->
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,10 +23,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     static final String EXERCISE_VIDEOPATH = "VIDEOPATH";
     static final String EXERCISE_TAGS = "TAGS";
 
+    static final String EXERCISE_IMAGE = "IMAGE";
+
     private static final String CREATE_DB_QUERY = "CREATE TABLE " + DATABASE_TABLE + " ( "
             + EXERCISE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + EXERCISE_NAME + " TEXT NOT NULL, "
             + EXERCISE_DESCRIPTION + " TEXT NOT NULL, " + EXERCISE_INSTRUCTIONS + " TEXT NOT NULL, "
-            + EXERCISE_VIDEOPATH + " TEXT NOT NULL, " + EXERCISE_TAGS + " TEXT NOT NULL" + " );";
+            + EXERCISE_VIDEOPATH + " TEXT NOT NULL, " + EXERCISE_TAGS + " TEXT NOT NULL, "
+            + EXERCISE_IMAGE + " TEXT NOT NULL" + " );";
+
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -63,7 +67,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "Description for Exercise 16", "Description for Exercise 17", "Description for Exercise 18",
                 "Description for Exercise 19", "Description for Exercise 20", "Description for Exercise 21",
                 "Description for Exercise 22", "Description for Exercise 23", "Description for Exercise 24",
-                "Description for Exercise 25", "Description for Exercise 26", "Description for Exercise 27",
+                "Description for Exercise 25", "Description: Leg circles are a low-impact exercise that involves moving the leg in a circular motion while standing or lying down. This exercise helps improve the range of motion, flexibility, and strength of the hip and leg muscles.", "Description for Exercise 27",
                 "Description for Exercise 28", "Description for Exercise 29", "Description for Exercise 30"};
         String[] instructions = {"Instructions for Exercise 1", "Instructions for Exercise 2", "Instructions for Exercise 3",
                 "Instructions for Exercise 4", "Instructions for Exercise 5", "Instructions for Exercise 6",
@@ -73,7 +77,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "Instructions for Exercise 16", "Instructions for Exercise 17", "Instructions for Exercise 18",
                 "Instructions for Exercise 19", "Instructions for Exercise 20", "Instructions for Exercise 21",
                 "Instructions for Exercise 22", "Instructions for Exercise 23", "Instructions for Exercise 24",
-                "Instructions for Exercise 25", "Instructions for Exercise 26", "Instructions for Exercise 27",
+                "Instructions for Exercise 25", "Instructions: \n" + "1. Stand straight with your hands on your hips for balance or hold onto a sturdy chair or wall.\n" +
+                "2. Lift one leg slightly off the ground.\n" +
+                "3. Move your leg in a circular motion, starting with small circles and gradually increasing the size.\n" +
+                "4. Perform 10 circles in one direction, then switch to 10 circles in the opposite direction.\n" +
+                "5. Repeat with the other leg.\n" +
+                "6. Ensure to maintain a steady breathing pattern throughout the exercise.", "Instructions for Exercise 27",
                 "Instructions for Exercise 28", "Instructions for Exercise 29", "Instructions for Exercise 30"};
         String[] videoPaths = {"path/to/video1", "path/to/video2", "path/to/video3", "path/to/video4", "path/to/video5",
                 "path/to/video6", "path/to/video7", "path/to/video8", "path/to/video9", "path/to/video10",
@@ -112,6 +121,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "stage2,stage3,bradykinesia,rigidity,postural_instability,legs,hardStandingUp,reg,no_limitations,flexibility,muscle,endurance",
                 "stage1,stage2,bradykinesia,rigidity,postural_instability,hands,noIssues,rarely,no_limitations,fine_motor_skills",
                 "stage1,stage2,tremors,bradykinesia,rigidity,hands,noIssues,rarely,no_limitations,fine_motor_skills"};
+
+        String[] image = {
+               "walking_removebg_preview", "other_removebg_preview", "other_removebg_preview", "other_removebg_preview", "other_removebg_preview",
+                "other_removebg_preview", "other_removebg_preview", "other_removebg_preview", "other_removebg_preview", "arm_swings_removebg_preview",
+                "file__1_", "other_removebg_preview", "other_removebg_preview", "other_removebg_preview", "other_removebg_preview",
+                "other_removebg_preview", "other_removebg_preview", "other_removebg_preview", "other_removebg_preview", "other_removebg_preview",
+                "other_removebg_preview", "other_removebg_preview", "other_removebg_preview", "other_removebg_preview", "other_removebg_preview",
+                "legcircles_removebg_preview", "other_removebg_preview", "other_removebg_preview", "other_removebg_preview", "other_removebg_preview"};
         for (int i = 0; i < exerciseNames.length; i++) {
             ContentValues values = new ContentValues();
             values.put(EXERCISE_NAME, exerciseNames[i]);
@@ -119,6 +136,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             values.put(EXERCISE_INSTRUCTIONS, instructions[i]);
             values.put(EXERCISE_VIDEOPATH, videoPaths[i]);
             values.put(EXERCISE_TAGS, tags[i]);
+            values.put(EXERCISE_IMAGE, image[i]);
             db.insert(DATABASE_TABLE, null, values);
         }
     }

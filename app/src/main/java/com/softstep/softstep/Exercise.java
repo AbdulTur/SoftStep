@@ -9,13 +9,16 @@ public class Exercise {
 
     private String tags;
 
-    public Exercise(int id, String name, String description, String instructions, String videoPath, String tags) {
+    private String ImagePath;
+
+    public Exercise(int id, String name, String description, String instructions, String videoPath, String tags, String imagePath) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.instructions = instructions;
         this.videoPath = videoPath;
         this.tags = tags;
+        this.ImagePath = imagePath;
     }
 
 
@@ -43,4 +46,6 @@ public class Exercise {
     }
 
     public String getTags(){return tags;}
+
+    public String getImagePath(){return ImagePath;}
 }

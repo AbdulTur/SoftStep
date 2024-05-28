@@ -3,7 +3,7 @@ package com.softstep.softstep;
 public class ProfileData {
 
     public ProfileData() {
-        // No-argument constructor required for Gson
+
     }
 
     public String Name = "";
