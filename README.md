@@ -54,11 +54,6 @@ SoftStep is an innovative mobile application designed to assist patients with Pa
 3. **Notifications**: Stay updated with reminders and motivational messages through push notifications.
 
 ## Screenshots
-
-![Home Screen](https://github.com/AbdulTur/SoftStep/assets/126967845/7809d711-2624-404c-a2e5-bee468e6d240)
-![Profile Management](https://github.com/AbdulTur/SoftStep/assets/126967845/0fa62826-0e9e-4ca0-8e5a-1f0a2bc75e1a)
-![Exercise Detail](https://github.com/AbdulTur/SoftStep/assets/126967845/a833ab60-a797-4505-97aa-cf298e9fa46e)
-
 <img src="https://github.com/AbdulTur/SoftStep/assets/126967845/7809d711-2624-404c-a2e5-bee468e6d240" alt="Home Screen" width="200"/>
 <img src="https://github.com/AbdulTur/SoftStep/assets/126967845/a833ab60-a797-4505-97aa-cf298e9fa46e" alt="Exercise Detail" width="200"/>
 <img src="https://github.com/AbdulTur/SoftStep/assets/126967845/0fa62826-0e9e-4ca0-8e5a-1f0a2bc75e1a" alt="Profile Management" width="200"/>
